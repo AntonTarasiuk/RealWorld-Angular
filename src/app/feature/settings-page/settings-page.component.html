@@ -1,0 +1,79 @@
+
+<div class="settings-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Your Settings</h1>
+
+                <form [formGroup]="settingsFormGroup" (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input formControlName="userPictureURL" class="form-control" type="text" placeholder="URL of profile picture">
+                        </fieldset>
+                        <div *ngIf="userPictureURL?.errors?.['minlength']" class="alert alert-danger">
+                            URL of profile picture must be at least 10 characters long.
+                        </div>
+                        <fieldset class="form-group">
+                            <input formControlName="userName" class="form-control form-control-lg" type="text" placeholder="Your Name">
+                        </fieldset>
+                        <div *ngIf="userName?.invalid" class="alert alert-danger">
+                            <div *ngIf="userName?.errors?.['required']">
+                                Name is required.
+                            </div>
+                            <div *ngIf="userName?.errors?.['minlength']">
+                                Name must be at least 2 characters long.
+                            </div>
+                            <div *ngIf="userName?.errors?.['maxLength']">
+                                Name must be maximum 100 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <textarea formControlName="userAbout" class="form-control form-control-lg" rows="8" placeholder="Short bio about you"></textarea>
+                        </fieldset>
+                        <div *ngIf="userAbout?.invalid" class="alert alert-danger">
+                            <div *ngIf="userAbout?.errors?.['minlength']">
+                                About block must be at least 2 characters long.
+                            </div>
+                            <div *ngIf="userAbout?.errors?.['maxLength']">
+                                About block must be maximum 2500 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <input formControlName="userEmail" class="form-control form-control-lg" type="text" placeholder="Email">
+                        </fieldset>
+                        <div *ngIf="userEmail?.invalid" class="alert alert-danger">
+                            <div *ngIf="userEmail?.errors?.['required']">
+                                Email is required.
+                            </div>
+                            <div *ngIf="userEmail?.errors?.['minlength']">
+                                Email must be at least 10 characters long.
+                            </div>
+                            <div *ngIf="userEmail?.errors?.['maxLength']">
+                                Email must be maximum 100 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <input formControlName="userPassword" class="form-control form-control-lg" type="password" placeholder="Password">
+                        </fieldset>
+                        <div *ngIf="userPassword?.invalid" class="alert alert-danger">
+                            <div *ngIf="userPassword?.errors?.['required']">
+                                Password is required.
+                            </div>
+                            <div *ngIf="userPassword?.errors?.['minlength']">
+                                Password must be at least 16 characters long.
+                            </div>
+                            <div *ngIf="userPassword?.errors?.['maxLength']">
+                                Password must be maximum 25 characters long.
+                            </div>
+                        </div>
+                        <button (click)="onSubmit()" [disabled]="settingsFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                            Update Settings
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign up</h1>
+                <p class="text-xs-center">
+                    <a routerLink="/login" routerLinkActive="active">Have an account?</a>
+                </p>
+
+                <!-- <ul class="error-messages">
+                    <li>That email is already taken</li>
+                </ul> -->
+
+                <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+                    <fieldset class="form-group">
+                        <input formControlName="userName" class="form-control form-control-lg" type="text" placeholder="Your Name">
+                    </fieldset>
+                    <div *ngIf="userName?.invalid" class="alert alert-danger">
+                        <div *ngIf="userName?.errors?.['required']">
+                            Name is required.
+                        </div>
+                        <div *ngIf="userName?.errors?.['minlength']">
+                            Name must be at least 2 characters long.
+                        </div>
+                        <div *ngIf="userName?.errors?.['maxLength']">
+                            Name must be maximum 100 characters long.
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <input formControlName="userEmail" class="form-control form-control-lg" type="text" placeholder="Email">
+                    </fieldset>
+                    <div *ngIf="userEmail?.invalid" class="alert alert-danger">
+                        <div *ngIf="userEmail?.errors?.['required']">
+                            Email is required.
+                        </div>
+                        <div *ngIf="userEmail?.errors?.['minlength']">
+                            Email must be at least 10 characters long.
+                        </div>
+                        <div *ngIf="userEmail?.errors?.['maxLength']">
+                            Email must be maximum 100 characters long.
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <input formControlName="userPassword" class="form-control form-control-lg" type="password" placeholder="Password">
+                    </fieldset>
+                    <div *ngIf="userPassword?.invalid" class="alert alert-danger">
+                        <div *ngIf="userPassword?.errors?.['required']">
+                            Password is required.
+                        </div>
+                        <div *ngIf="userPassword?.errors?.['minlength']">
+                            Password must be at least 16 characters long.
+                        </div>
+                        <div *ngIf="userPassword?.errors?.['maxLength']">
+                            Password must be maximum 25 characters long.
+                        </div>
+                    </div>
+                    <button (click)="onSubmit()" [disabled]="registerFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                        Sign up
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="home-page">
+
+    <app-banner></app-banner>
+
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="feed-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item">
+                            <a href="#" [class.active]="!isActive" (click)="onFeedClick()" [ngClass]="!isActive ? ['active', 'nav-link'] : 'nav-link'">Global Feed</a>
+                        </li>
+                        <li class="nav-item" *ngIf="isActive">
+                            <a class="nav-link" href="#" [class.active]="isActive">{{newFeedTag}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <app-feed-item *ngFor="let item of items" [item]="item"></app-feed-item>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <app-popular-tags (onTagClick)="clickedTag($event)"></app-popular-tags>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

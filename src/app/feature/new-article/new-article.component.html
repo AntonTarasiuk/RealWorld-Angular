@@ -1,0 +1,77 @@
+<div class="editor-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-10 offset-md-1 col-xs-12">
+                <form [formGroup]="articleFormGroup" (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input formControlName="articleTitle" type="text" class="form-control form-control-lg" placeholder="Article Title">
+                        </fieldset>
+                        <div *ngIf="articleTitle?.invalid" class="alert alert-danger">
+                            <div *ngIf="articleTitle?.errors?.['required']">
+                                Name is required.
+                            </div>
+                            <div *ngIf="articleTitle?.errors?.['minlength']">
+                                Name must be at least 2 characters long.
+                            </div>
+                            <div *ngIf="articleTitle?.errors?.['maxLength']">
+                                Name must be maximum 100 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <input formControlName="articleDescription" type="text" class="form-control" placeholder="What's this article about?">
+                        </fieldset>
+                        <div *ngIf="articleDescription?.invalid" class="alert alert-danger">
+                            <div *ngIf="articleDescription?.errors?.['required']">
+                                Article description is required.
+                            </div>
+                            <div *ngIf="articleDescription?.errors?.['minlength']">
+                                Article description must be at least 2 characters long.
+                            </div>
+                            <div *ngIf="articleDescription?.errors?.['maxLength']">
+                                Article description must be maximum 250 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <textarea formControlName="articleBody" class="form-control" rows="8" placeholder="Write your article (in markdown)">
+                            </textarea>
+                        </fieldset>
+                        <div *ngIf="articleBody?.invalid" class="alert alert-danger">
+                            <div *ngIf="articleBody?.errors?.['required']">
+                                Article body is required.
+                            </div>
+                            <div *ngIf="articleBody?.errors?.['minlength']">
+                                Article body must be at least 2 characters long.
+                            </div>
+                            <div *ngIf="articleBody?.errors?.['maxLength']">
+                                Article body must be maximum 2500 characters long.
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <input formControlName="articleTags" type="text" class="form-control" placeholder="Enter tags using a template: '#cats #dogs #rebits'">
+                            <div class="tag-list">
+                                <span *ngFor="let tag of tags">
+                                    <app-tag *ngIf="tag!=''" [tagText]="tag" tagClass="tag-feed-item"></app-tag>
+                                </span>
+                            </div>
+                            <div *ngIf="articleTags?.invalid" class="alert alert-danger">
+                                <div *ngIf="articleTags?.errors?.['required']">
+                                    Tags is required.
+                                </div>
+                                <div *ngIf="articleTags?.errors?.['minlength']">
+                                    Tags must be at least 2 characters long.
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button (click)="onSubmit()" [disabled]="articleFormGroup.invalid" type="submit" class="btn btn-lg pull-xs-right btn-primary">
+                            Publish Article
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,26 @@
+.tag-custome-default {
+    margin-right: 3px;
+    font-size: 0.8rem;
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.tag-popular-tags {
+    color: #fff !important;
+    margin-bottom: 0.2rem;
+    display: inline-block;
+    background-color: #818a91;
+
+    &:hover {
+        background-color: #687077;
+    }
+}
+
+.tag-feed-item {
+    font-weight: 300;
+    border: 1px solid #ddd;
+    color: #aaa;
+}

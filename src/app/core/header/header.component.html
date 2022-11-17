@@ -1,0 +1,35 @@
+<header>
+    <nav class="navbar navbar-light">
+        <div class="container">
+            <a routerLink="/home" class="navbar-brand">conduit</a>
+            <ul class="nav navbar-nav pull-xs-right">
+                <li class="nav-item">
+                    <!-- Add "active" class when you're on that page" -->
+                    <a routerLink="/home" routerLinkActive="active" class="nav-link active">Home</a>
+                </li>
+                <ng-container *ngIf="isLogin; else forNtSignInUsers">
+                    <li class="nav-item">
+                        <a routerLink="/new-article" routerLinkActive="active" class="nav-link" href="" appHighlight>
+                            <i class="ion-compose"></i>&nbsp;New Article
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/settings" routerLinkActive="active" class="nav-link" href="" appHighlight>
+                            <i class="ion-gear-a"></i>&nbsp;Settings
+                        </a>
+                    </li>
+                </ng-container>
+                <ng-template #forNtSignInUsers>
+                    <li class="nav-item">
+                        <a routerLink="/login" routerLinkActive="active" class="nav-link" href="" appHighlight>Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/register" routerLinkActive="active" class="nav-link" href="" appHighlight>Sign up</a>
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+    </nav>
+
+    
+</header>

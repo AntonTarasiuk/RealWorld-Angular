@@ -1,0 +1,22 @@
+<div class="article-preview">
+    <div class="article-meta">
+        <a href="profile.html"><img src={{item.avatar}}/></a>
+        <div class="info">
+            <a href="" class="author">{{item.authorName}}</a>
+            <span class="date">{{item.postDate | date: 'medium'}}</span>
+        </div>
+        <button class="btn btn-outline-primary btn-sm pull-xs-right">
+            <i class="ion-heart"></i> {{item.likes}}
+        </button>
+    </div>
+    <a href="" class="preview-link">
+        <h1>{{item.articleName | truncate}}</h1>
+        <p appHighlight>{{item.article}}</p>
+        <span>Read more...</span>
+        <ul class="tag-list">
+            <li *ngFor="let tag of item.tags">
+                <app-tag [tagText]="tag" tagClass="tag-feed-item"></app-tag>
+            </li>
+        </ul>
+    </a>
+</div>
