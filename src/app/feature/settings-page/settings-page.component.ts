@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserUpdate } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-settings-page',
@@ -8,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SettingsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authServic: AuthService) { }
 
   public settingsFormGroup: FormGroup = new FormGroup({
     userPictureURL: new FormControl('', [ 
@@ -51,12 +53,30 @@ export class SettingsPageComponent implements OnInit {
     return this.settingsFormGroup.get('userPassword'); 
   }
   
-  public onSubmit() {
-    console.log("Data is saved");
-    this.settingsFormGroup.reset();
-  }
-
   ngOnInit(): void {
+    this.authServic.getUser().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        const { email, username, bio, image } = res.user
+        this.userEmail?.setValue(email);
+        this.userName?.setValue(username);
+        this.userPictureURL?.setValue(image);
+        this.userAbout?.setValue(bio);
+      }
+    })
+  }
+  
+  public save(): any {
+    const updateBody = {
+      user: {
+        bio: this.userAbout?.value,
+        email: this.userEmail?.value,
+        image: this.userPictureURL?.value,
+        username: this.userName?.value
+      }
+    }
+    this.authServic.updateUser(updateBody);
+    this.settingsFormGroup.reset();
   }
 
 }
