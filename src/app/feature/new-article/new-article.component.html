@@ -8,7 +8,7 @@
                         <fieldset class="form-group">
                             <input formControlName="articleTitle" type="text" class="form-control form-control-lg" placeholder="Article Title">
                         </fieldset>
-                        <div *ngIf="articleTitle?.invalid" class="alert alert-danger">
+                        <div *ngIf="articleTitle?.touched && articleTitle?.invalid" class="alert alert-danger">
                             <div *ngIf="articleTitle?.errors?.['required']">
                                 Name is required.
                             </div>
@@ -22,7 +22,7 @@
                         <fieldset class="form-group">
                             <input formControlName="articleDescription" type="text" class="form-control" placeholder="What's this article about?">
                         </fieldset>
-                        <div *ngIf="articleDescription?.invalid" class="alert alert-danger">
+                        <div *ngIf="articleDescription?.touched && articleDescription?.invalid" class="alert alert-danger">
                             <div *ngIf="articleDescription?.errors?.['required']">
                                 Article description is required.
                             </div>
@@ -37,7 +37,7 @@
                             <textarea formControlName="articleBody" class="form-control" rows="8" placeholder="Write your article (in markdown)">
                             </textarea>
                         </fieldset>
-                        <div *ngIf="articleBody?.invalid" class="alert alert-danger">
+                        <div *ngIf="articleBody?.touched && articleBody?.invalid" class="alert alert-danger">
                             <div *ngIf="articleBody?.errors?.['required']">
                                 Article body is required.
                             </div>
@@ -55,7 +55,7 @@
                                     <app-tag *ngIf="tag!=''" [tagText]="tag" tagClass="tag-feed-item"></app-tag>
                                 </span>
                             </div>
-                            <div *ngIf="articleTags?.invalid" class="alert alert-danger">
+                            <div *ngIf="articleTags?.touched && articleTags?.invalid" class="alert alert-danger">
                                 <div *ngIf="articleTags?.errors?.['required']">
                                     Tags is required.
                                 </div>

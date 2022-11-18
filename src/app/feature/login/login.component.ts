@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Login } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public authServic: AuthService) {
+  }
+  
   public loginFormGroup: FormGroup = new FormGroup({
     userEmail: new FormControl('', [
       Validators.required,
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
       Validators.maxLength(25)
     ])
   })
-
+  
   get userEmail() { 
     return this.loginFormGroup.get('userEmail'); 
   }
@@ -30,12 +33,18 @@ export class LoginComponent implements OnInit {
     return this.loginFormGroup.get('userPassword'); 
   }
   
-  public onSubmit() {
-    console.log("Successfuly!");
-    this.loginFormGroup.reset();
-  }
-
   ngOnInit(): void {
+  }
+  
+  public login(): any {
+    const loginBody: Login = {
+      user: {
+        email: this.userEmail?.value,
+        password: this.userPassword?.value
+      }
+    }
+    this.authServic.login(loginBody);
+    this.loginFormGroup.reset();
   }
 
 }

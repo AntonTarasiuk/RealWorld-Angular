@@ -9,11 +9,11 @@
                     <a routerLink="/register" routerLinkActive="active">Do not have an account?</a>
                 </p>
 
-                <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+                <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
                     <fieldset class="form-group">
                         <input formControlName="userEmail" class="form-control form-control-lg" type="text" placeholder="Email">
                     </fieldset>
-                    <div *ngIf="userEmail?.invalid" class="alert alert-danger">
+                    <div *ngIf="userEmail?.touched && userEmail?.invalid" class="alert alert-danger">
                         <div *ngIf="userEmail?.errors?.['required']">
                             Email is required.
                         </div>
@@ -27,7 +27,7 @@
                     <fieldset class="form-group">
                         <input formControlName="userPassword" class="form-control form-control-lg" type="password" placeholder="Password">
                     </fieldset>
-                    <div *ngIf="userPassword?.invalid" class="alert alert-danger">
+                    <div *ngIf="userPassword?.touched && userPassword?.invalid" class="alert alert-danger">
                         <div *ngIf="userPassword?.errors?.['required']">
                             Password is required.
                         </div>
@@ -38,7 +38,19 @@
                             Password must be maximum 25 characters long.
                         </div>
                     </div>
-                    <button (click)="onSubmit()" [disabled]="loginFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                    <div *ngIf="authServic.errorMessages">
+                        <ul *ngFor="let message of authServic.errorMessages" class="alert alert-danger">
+                            <li>
+                                {{message}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="authServic.user" class="alert alert-success">
+                        <span>
+                            Successfuly!
+                        </span>
+                    </div>
+                    <button (click)="login()" [disabled]="loginFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
                         Sign in
                     </button>
                 </form>

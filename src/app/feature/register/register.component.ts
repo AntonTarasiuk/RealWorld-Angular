@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Registr } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authServic: AuthService) { }
 
   public registerFormGroup: FormGroup = new FormGroup({
     userName: new FormControl('', [
@@ -38,12 +41,23 @@ export class RegisterComponent implements OnInit {
     return this.registerFormGroup.get('userPassword'); 
   }
   
-  public onSubmit() {
-    console.log("Successfuly");
-    this.registerFormGroup.reset();
-  }
-
+  // public onSubmit() {
+  //   console.log("Successfuly");
+  // }
+  
   ngOnInit(): void {
+  }
+  
+  public regitre(): any {
+    const registerBody: Registr = {
+      user: {
+        username: this.userName?.value,
+        email: this.userEmail?.value,
+        password: this.userPassword?.value
+      }
+    }
+    this.authServic.regitre(registerBody)
+    this.registerFormGroup.reset();
   }
 
 }
