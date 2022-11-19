@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import arrayOfTags from "../../../sourceFld/arrayOfTags.json"
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Tags } from '../types';
 
 @Component({
   selector: 'app-popular-tags',
@@ -9,9 +9,8 @@ import arrayOfTags from "../../../sourceFld/arrayOfTags.json"
 export class PopularTagsComponent implements OnInit {
 
   constructor() { }
-
-  public arrayOfTags: string[] = arrayOfTags;
   
+  @Input() tags: Tags | null;
   @Output() onTagClick = new EventEmitter<string>();
 
   public clickedTagHandler(tag: string): void {

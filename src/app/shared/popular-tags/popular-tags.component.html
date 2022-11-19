@@ -1,7 +1,7 @@
 <p>Popular Tags</p>
 
 <div class="tag-list">
-    <a href="#" *ngFor="let tag of arrayOfTags" (click)="clickedTagHandler(tag)">
+    <a href="#" *ngFor="let tag of tags" (click)="clickedTagHandler(tag)">
         <app-tag [tagText]="tag" tagClass="tag-popular-tags"></app-tag>
     </a>
 </div>

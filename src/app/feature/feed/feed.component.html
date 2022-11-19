@@ -17,13 +17,13 @@
                     </ul>
                 </div>
 
-                <app-feed-item *ngFor="let item of items" [item]="item"></app-feed-item>
+                <app-feed-item *ngFor="let article of (articles | async)" [article]="article"></app-feed-item>
 
             </div>
 
             <div class="col-md-3">
                 <div class="sidebar">
-                    <app-popular-tags (onTagClick)="clickedTag($event)"></app-popular-tags>
+                    <app-popular-tags [tags]="tags | async" (onTagClick)="clickedTag($event)"></app-popular-tags>
                 </div>
             </div>
 

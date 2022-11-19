@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Item } from '../feed-item/feed-item.component';
-import itemArray from "../../../sourceFld/itemArray.json"
+import { DataService } from 'src/app/shared/services/data.service';
+import { forkJoin, Observable } from 'rxjs';
+import { Article, Tags } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-feed',
@@ -9,10 +10,11 @@ import itemArray from "../../../sourceFld/itemArray.json"
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
-  constructor() { }
+  constructor(public data: DataService) { }
 
-  public items: Item[] = itemArray
   public newFeedTag!: string;
+  public tags!: Observable<Tags>;
+  public articles!: Observable<Article[]>;
 
   @Input() isActive: boolean = false;
 
@@ -26,6 +28,10 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    forkJoin([
+      this.tags = this.data.getTags(),
+      this.articles = this.data.getArticles()
+    ])
   }
 
 }
