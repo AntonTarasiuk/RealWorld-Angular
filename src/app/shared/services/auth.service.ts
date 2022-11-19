@@ -50,7 +50,6 @@ export class AuthService {
   }
 
   public getUser(): Observable<any> {
-    console.log(this.user.token)
     const headers = new HttpHeaders({
       Authorization: `Token ${this.user.token}`
     })

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { UserUpdate } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-settings-page',

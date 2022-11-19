@@ -1,14 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface Item {
-  avatar: string,
-  authorName: string,
-  postDate: string,
-  likes: string,
-  articleName: string,
-  article: string,
-  tags: string[]
-}
+import { Article } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-feed-item',
@@ -18,7 +9,7 @@ export interface Item {
 export class FeedItemComponent implements OnInit {
 
   constructor() { }
-  @Input() public item!: Item;
+  @Input() public article!: Article;
 
   ngOnInit(): void {
   }
