@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { User } from '../types';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,19 +49,12 @@ export class AuthService {
     })
   }
 
-  public getUser(): any {
+  public getUser(): Observable<any> {
     console.log(this.user.token)
     const headers = new HttpHeaders({
       Authorization: `Token ${this.user.token}`
     })
-    this.httpClient.get(`${this.apiUrl}/user`, {headers}).subscribe(
-      res => console.log(res)
-    )
+    return this.httpClient.get(`${this.apiUrl}/user`, {headers})
   }
-
-  public updateUser(updateBody: any): any {
-    this.httpClient.put(`${this.apiUrl}/user`, {
-      ...updateBody
-    })
-  }
+  
 }

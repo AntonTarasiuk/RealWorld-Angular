@@ -6,7 +6,7 @@
             <div class="col-md-6 offset-md-3 col-xs-12">
                 <h1 class="text-xs-center">Your Settings</h1>
 
-                <form [formGroup]="settingsFormGroup" (ngSubmit)="save()">
+                <form [formGroup]="settingsFormGroup" (ngSubmit)="onSubmit()">
                     <fieldset>
                         <fieldset class="form-group">
                             <input formControlName="userPictureURL" class="form-control" type="text" placeholder="URL of profile picture">
@@ -67,7 +67,7 @@
                                 Password must be maximum 25 characters long.
                             </div>
                         </div>
-                        <button (click)="save()" [disabled]="settingsFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                        <button (click)="onSubmit()" [disabled]="settingsFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
                             Update Settings
                         </button>
                     </fieldset>

@@ -66,16 +66,7 @@ export class SettingsPageComponent implements OnInit {
     })
   }
   
-  public save(): any {
-    const updateBody = {
-      user: {
-        bio: this.userAbout?.value,
-        email: this.userEmail?.value,
-        image: this.userPictureURL?.value,
-        username: this.userName?.value
-      }
-    }
-    this.authServic.updateUser(updateBody);
+  public onSubmit(): any {
     this.settingsFormGroup.reset();
   }
 
