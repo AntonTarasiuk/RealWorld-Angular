@@ -3,21 +3,22 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { User } from '../types';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl: string = "https://api.realworld.io/api";
   public errorMessages: string[] = []
   public user!: User
 
   constructor(private httpClient: HttpClient, private router: Router) { }
-  
-  public regitre(registerBody: any): void {
+
+  public register(registerBody: any): void {
+
     this.errorMessages = [];
-    this.httpClient.post<{user: User}>(`${this.apiUrl}/users`, {
+    this.httpClient.post<{user: User}>(`${environment.apiUrl}/users`, {
       ...registerBody
     }).subscribe({
       next: res => {
@@ -34,7 +35,7 @@ export class AuthService {
 
   public login(loginBody: any) {
     this.errorMessages = [];
-    this.httpClient.post<{user: User}>(`${this.apiUrl}/users/login`, {
+    this.httpClient.post<{user: User}>(`${environment.apiUrl}/users/login`, {
       ...loginBody
     }).subscribe({
       next: res => {
@@ -53,7 +54,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       Authorization: `Token ${this.user.token}`
     })
-    return this.httpClient.get(`${this.apiUrl}/user`, {headers})
+    return this.httpClient.get(`${environment.apiUrl}/user`, {headers})
   }
   
 }

@@ -1,0 +1,44 @@
+[
+    {
+        "avatar": "http://i.imgur.com/Qr71crq.jpg",
+        "authorName": "Eric Simons",
+        "postDate": "October 9, 2022",
+        "likes": "29",
+        "articleName": "How to build webapps that scale",
+        "article": "This is the description for the post.",
+        "tags": [
+            "necessitatibus",
+            "sequi",
+            "vitae",
+            "doloribus"
+        ]
+    },
+    {
+        "avatar": "http://i.imgur.com/N4VcUeJ.jpg",
+        "authorName": "Albert Pai",
+        "postDate": "November 7, 2022",
+        "likes": "32",
+        "articleName": "The song you won't ever stop singing. No matter how hard you try.",
+        "article": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, molestiae.",
+        "tags": [
+            "est",
+            "beatae",
+            "fugiat",
+            "sunt"
+        ]
+    },
+    {
+        "avatar": "http://i.imgur.com/N4WcUeJ.jpg",
+        "authorName": "Tony Stark",
+        "postDate": "November 8, 2022",
+        "likes": "10000",
+        "articleName": "Iron Man says.",
+        "article": "Big man in a suit of armor. Take that off, what are you?",
+        "tags": [
+            "quasi",
+            "vel",
+            "blanditiis",
+            "deserunt"
+        ]
+    }
+]

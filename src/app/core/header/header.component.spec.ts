@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HighlightDirective } from 'src/app/shared/directives/highlight.directive';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { HeaderComponent } from './header.component';
 
@@ -8,7 +10,16 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      providers: [{
+        provide: AuthService, useValue: {
+          isAuthentificated: true,
+          user: {
+            username: 'Test',
+            image: 'Test'
+          }
+        }
+      }],
+      declarations: [ HeaderComponent, HighlightDirective ]
     })
     .compileComponents();
 

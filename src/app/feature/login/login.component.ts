@@ -10,8 +10,7 @@ import { Login } from 'src/app/shared/types';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public authServic: AuthService) {
-  }
+  constructor(public authServic: AuthService) {}
   
   public loginFormGroup: FormGroup = new FormGroup({
     userEmail: new FormControl('', [

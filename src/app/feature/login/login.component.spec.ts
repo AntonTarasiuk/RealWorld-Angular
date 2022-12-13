@@ -1,4 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +10,18 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      imports: [
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      declarations: [ LoginComponent ],
+      providers: [
+        {provide: AuthService, useValue: {
+          login: () => {}
+        }}
+      ],
+      errorOnUnknownElements: true,
+      errorOnUnknownProperties: true 
     })
     .compileComponents();
 
@@ -20,4 +33,11 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call login from auth service', waitForAsync(() => {
+    let service = TestBed.inject(AuthService);
+    const spy = spyOn(service, 'login').and.callThrough();
+    component.login();
+    expect(spy).toHaveBeenCalled();
+  }));
 });
