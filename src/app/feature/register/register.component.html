@@ -12,11 +12,11 @@
                     <li>That email is already taken</li>
                 </ul> -->
 
-                <form [formGroup]="registerFormGroup" (ngSubmit)="regitre()">
+                <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
                     <fieldset class="form-group">
                         <input formControlName="userName" class="form-control form-control-lg" type="text" placeholder="Your Name">
                     </fieldset>
-                    <div *ngIf="userName?.touched && userName?.invalid" class="alert alert-danger">
+                    <div *ngIf="userEmail?.touched && userName?.invalid" class="alert alert-danger">
                         <div *ngIf="userName?.errors?.['required']">
                             Name is required.
                         </div>
@@ -44,14 +44,14 @@
                     <fieldset class="form-group">
                         <input formControlName="userPassword" class="form-control form-control-lg" type="password" placeholder="Password">
                     </fieldset>
-                    <div *ngIf="userPassword?.touched && userPassword?.invalid" class="alert alert-danger">
+                    <div *ngIf="userEmail?.touched && userPassword?.invalid" class="alert alert-danger">
                         <div *ngIf="userPassword?.errors?.['required']">
                             Password is required.
                         </div>
                         <div *ngIf="userPassword?.errors?.['minlength']">
                             Password must be at least 16 characters long.
                         </div>
-                        <div *ngIf="userPassword?.errors?.['maxlength']">
+                        <div *ngIf="userPassword?.errors?.['maxLength']">
                             Password must be maximum 25 characters long.
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             Successfuly!
                         </span>
                     </div>
-                    <button (click)="regitre()" [disabled]="registerFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                    <button (click)="register()" [disabled]="registerFormGroup.invalid" type="submit" class="btn btn-lg btn-primary pull-xs-right">
                         Sign up
                     </button>
                 </form>

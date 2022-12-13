@@ -6,7 +6,7 @@ type User = {
     username: string,
 };
 
-type Registr = {
+type Register = {
     user: {
         username?: "string",
         email: "string",
@@ -19,24 +19,24 @@ type Login = {
         email: "string",
         password: "string"
     }
-};
+}
 
 type Tags = Array<string>;
 
 type Article = {
-    slug: "string",
-    title: "string",
-    description: "string",
-    body: "string",
+    slug: string,
+    title: string,
+    description: string,
+    body: string,
     tagList: Array<string>,
-    createdAt: "string",
-    updatedAt: "string",
+    createdAt: string,
+    updatedAt: string,
     favorited: boolean,
     favoritesCount: number,
     author: {
-        username: "string",
-        bio: "string",
-        image: "string",
+        username: string,
+        bio: string,
+        image: string,
         following: boolean
     }
 }
@@ -46,4 +46,4 @@ interface IArticles {
     articlesCount: number
 }
 
-export { User, Registr, Login, IArticles, Article, Tags }
+export { User, Register, Login, IArticles, Article, Tags }
